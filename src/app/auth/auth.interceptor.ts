@@ -13,12 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (this.userService.isUserAuthenticated()) {
             request = request.clone({
-                headers: request.headers.set('Authorization', this.getToken()).append('Access-Control-Allow-Origin', '*')
-            });
-        }
-        else{
-            request = request.clone({
-                headers: request.headers.append('Access-Control-Allow-Origin', '*')
+                headers: request.headers.set('Authorization', this.getToken())
             });
         }
         return next.handle(request);
