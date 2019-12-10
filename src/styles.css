@@ -1,1 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: #e6e6e6;
+}
+
+div.sm-jumbotron{
+    margin: 0px;
+    padding: 2rem;
+    background-color: #3f51b5;
+    color: #fff;
+}
+
+button.btn-submit{
+    background-color: #3f51b5;
+    color: #fff;
+    width: 100%;
+}
+button.btn-submit:focus,button.btn-submit:hover{
+    background-color: #3f51b5;
+}
+
+input.ng-invalid.ng-dirty{
+    border-bottom-color : #e21d5f !important;
+    box-shadow: 0 1px 0 0 #e21d5f !important;
+}
+
+.tabs{
+    height: 65px;
+}
+.tabs .tab{
+    text-transform : none !important;
+    line-height: 65px;
+    height: 65px;
+}
+.tabs .tab a{
+    font-size: 25px;
+    color: grey !important;
+}
+
+.tabs .tab a.active{
+    background-color: rgb(255, 255, 255) !important;
+}
+
+nav {
+    background-color: #3f51b5;
+    color: #fff;
+    box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+    margin-bottom: 30px;
+}
