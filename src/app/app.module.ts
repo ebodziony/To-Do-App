@@ -20,6 +20,7 @@ import { HomeComponent } from './home/home.component';
 import { appRoutes } from './routes';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { ToDoService } from './shared/todo.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [UserService, AuthGuard,
+  providers: [UserService, ToDoService, AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

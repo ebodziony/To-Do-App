@@ -13,11 +13,34 @@
   <div class="row col s12 m7">
     <div class="card">
       <div class="card-content">
+        <span>Logged in as:</span>
+        <br>
         <span>Username: {{user.userName}}</span>
         <br>
         <span>Email: {{user.email}}</span>
         <br>
         <span>Full Name: {{user.firstName}} {{user.lastName}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="user">
+  <div class="row col s12 m7">
+    <div class="card">
+      <div class="card-content row">
+        <form #toDoForm="ngForm" class="col s12 white" (ngSubmit)="onAdd(toDoForm)">
+        <div class="input-field col s3">
+          <input type="text" autocomplete="off" class="validate" #Title [(ngModel)]="newToDo.Title" name="Title" required>
+          <label data-error="Pole wymagane!" for="Title">Title *</label>
+        </div>
+        <div class="input-field col s7">
+          <input type="text" autocomplete="off" class="validate" #Note [(ngModel)]="newToDo.Note" name="Note">
+          <label for="Note">Note</label>
+        </div>
+        <div class="input-field col s2">
+          <button class="btn-large btn-submit" type="submit">Add Note</button>
+        </div>
+        </form>
       </div>
     </div>
   </div>
