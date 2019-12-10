@@ -3,33 +3,32 @@ import { UserService } from '../shared/user.service';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { User } from '../shared/user.model';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-    constructor(private router: Router) { }
+    constructor(public userService: UserService) { }
 
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (req.headers.get('No-Auth') === 'True') {
-            return next.handle(req.clone());
-        }
-
-        if (localStorage.getItem('userToken') == null) { // != null
-            const clonedreq = req.clone({
-                headers: req.headers.set('Authorization', 'Bearer ' + localStorage.getItem('userToken'))
+    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        if (this.userService.isUserAuthenticated()) {
+            request = request.clone({
+                headers: request.headers.set('Authorization', this.getToken()).append('Access-Control-Allow-Origin', '*')
             });
-            return next.handle(clonedreq)
-                .pipe(tap(
-                succ => { },
-                err => {
-                    if (err.status === 401) {
-                        this.router.navigateByUrl('/login');
-                    }
-                }
-                ));
-        } else {
-            this.router.navigateByUrl('/login');
+        }
+        else{
+            request = request.clone({
+                headers: request.headers.append('Access-Control-Allow-Origin', '*')
+            });
+        }
+        return next.handle(request);
+    }
+
+    getToken() {
+        let user: User = this.userService.getCurrentUserWithToken();
+        if (user) {
+            return 'Bearer ' + user.Token;
         }
     }
+
 }

@@ -4,10 +4,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthorizeUser } from 'src/app/shared/authorizeUser.model';
 
-const command = new AuthorizeUser();
-command.UserName = UserName;
-command.Password = password;
-
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -15,6 +11,7 @@ command.Password = password;
 })
 export class SignInComponent implements OnInit {
 
+  command: AuthorizeUser;
   isLoginError = false;
 
   constructor(private userService: UserService, private router: Router) { }
@@ -23,13 +20,17 @@ export class SignInComponent implements OnInit {
   }
 
   OnSubmit(userName, password) {
-    this.userService.userAuthentication(command).subscribe((data: any) => {
-      localStorage.setItem('userToken', data.access_token);
+
+    this.command = new AuthorizeUser();
+    this.command.UserName = userName;
+    this.command.Password = password;
+
+    this.userService.userAuthentication(this.command).subscribe((data: any) => {
+      localStorage.setItem('user', JSON.stringify(data));
       this.router.navigate(['/home']);
     },
-    (err: HttpErrorResponse) => {
+    (err) => {
       this.isLoginError = true;
     });
   }
-
 }

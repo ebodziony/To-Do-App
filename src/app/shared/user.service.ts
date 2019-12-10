@@ -18,21 +18,32 @@ const httpOptions = {
 })
 export class UserService {
 
+  currentUser: User;
+
   constructor(public http: HttpClient) {
   }
 
-  registerUser(user: User) {
-    return this.http.post(environment.apiUrl + 'api/register', user, httpOptions);
+  getCurrentUserWithToken(): User {
+    let user: User = JSON.parse(localStorage.getItem('user'));
+    this.currentUser = user;
+    return this.currentUser;
   }
 
-  // userAuthentication(userName, password) {
-  //   const data = 'username=' + userName + '&password=' + password + '&grant_type=password';
-  //   const reqHeader = new HttpHeaders({'Content-Type': 'application/x-www-urlencoded', 'No-Auth': 'True'});
-  //   return this.http.post(environment.apiUrl + 'api/login', data, {headers: reqHeader});
-  // }
+  isUserAuthenticated(): boolean {
+    let user = this.getCurrentUserWithToken();
+    if (user != null && user !== undefined) {
+      return true;
+    } else {
+    return false;
+    }
+  }
+
+  registerUser(user: User) {
+    return this.http.post(environment.apiUrl + 'user/registry', user, httpOptions);
+  }
 
   userAuthentication(command: AuthorizeUser) {
-    return this.http.post(environment.apiUrl + 'api/user/login', command, httpOptions);
+    return this.http.post(environment.apiUrl + 'user/login', command, httpOptions);
   }
 
   getUserClaims() {
