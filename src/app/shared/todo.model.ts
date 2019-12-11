@@ -4,4 +4,6 @@ export class Todo {
     done: boolean;
     userId: number;
     dueDate: Date;
+    isEdited: boolean;
+    id: number;
 }

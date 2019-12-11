@@ -40,11 +40,11 @@ export class UserService {
   }
 
   registerUser(user: User) {
-    return this.http.post(environment.apiUrl + 'user/registry', user, httpOptions);
+    return this.http.post(environment.apiUrl + 'user', user, httpOptions);
   }
 
   userAuthentication(command: AuthorizeUser) {
-    return this.http.post(environment.apiUrl + 'user/login', command, httpOptions);
+    return this.http.post(environment.apiUrl + 'login', command, httpOptions);
   }
 
   getUserClaims() {

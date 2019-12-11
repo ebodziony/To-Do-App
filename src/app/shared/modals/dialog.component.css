@@ -1,0 +1,8 @@
+.dialogButtons {
+    width: 50%;
+    padding: 0px 10px;
+}
+
+.redButton {
+    background-color: #f44336!important;
+}

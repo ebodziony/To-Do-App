@@ -7,6 +7,8 @@ import { User } from './user.model';
 import { AuthorizeUser } from './authorizeUser.model';
 import { CreateToDoCommand } from './commands/createToDoCommand';
 import { Todo } from './todo.model';
+import { ConfirmToDoCommand } from './commands/confirmToDoCommand';
+import { EditToDoCommand } from './commands/editToDoCommand';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -28,19 +30,19 @@ export class ToDoService {
     return this.http.post(environment.apiUrl + 'todo', command, httpOptions);
   }
 
-  edit(user: User) {
-    return this.http.put(environment.apiUrl + 'todo', user, httpOptions);
+  edit(command: EditToDoCommand): Observable<Todo> {
+    return this.http.put<Todo>(environment.apiUrl + 'todo/' + command.id, command, httpOptions);
   }
 
   remove(toDoId: number) {
     return this.http.delete(environment.apiUrl + 'todo/' + toDoId, httpOptions);
   }
 
-  confirm(user: User) {
-    return this.http.post(environment.apiUrl + 'todo/confirm', user, httpOptions);
+  confirm(command: ConfirmToDoCommand): Observable<Todo> {
+    return this.http.post<Todo>(environment.apiUrl + 'todo/confirm', command, httpOptions);
   }
 
   getAllToDoForUser(userId: number): Observable<Array<Todo>> {
-    return this.http.get<Array<Todo>>(environment.apiUrl + 'todo/forUser/' + userId, httpOptions);
+    return this.http.get<Array<Todo>>(environment.apiUrl + 'todo/' + userId, httpOptions);
   }
 }

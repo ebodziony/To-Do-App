@@ -29,16 +29,19 @@
     <div class="card">
       <div class="card-content row">
         <form #toDoForm="ngForm" class="col s12 white" (ngSubmit)="onAdd(toDoForm)">
+            <div class="addNoteHeader">
+                <span>Add new task:</span>
+            </div>
         <div class="input-field col s3">
-          <input type="text" autocomplete="off" class="validate" #Title [(ngModel)]="newToDo.Title" name="Title" required>
-          <label data-error="Pole wymagane!" for="Title">Title *</label>
+          <input type="text" autocomplete="off" class="validate" #Title [(ngModel)]="newToDo.Title" name="Title">
+          <label for="Title">Title</label>
         </div>
         <div class="input-field col s7">
           <input type="text" autocomplete="off" class="validate" #Note [(ngModel)]="newToDo.Note" name="Note">
           <label for="Note">Note</label>
         </div>
         <div class="input-field col s2">
-          <button class="btn-large btn-submit" type="submit">Add Note</button>
+          <button class="btn-large btn-submit" type="submit">Add Task</button>
         </div>
         </form>
       </div>
@@ -48,12 +51,26 @@
 <div class="container" *ngIf="user">
     <div class="row col s12 m7">
       <div class="card">
-        <div *ngIf="toDoListArray != undefined" class="card-content">
-            <span>My notes</span>
-            <br>
-          <div *ngFor="let toDoElement of toDoListArray">
-            {{toDoElement.title}} - {{toDoElement.note}}
-          </div>
+        <div *ngIf="toDoListArray != undefined" class="noteHeader">
+          <span>My tasks:</span>
       </div>
-    </div>
+      <mat-list>
+        <div *ngFor="let toDoElement of toDoListArray">
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <div class="gridTasks">
+            <div>
+              <mat-checkbox color="primary" (click)="onCheck(toDoElement.id)" [(ngModel)]="toDoElement.done"></mat-checkbox>
+            </div>
+          <span class="todoTitle" *ngIf="toDoElement.isEdited != true">{{toDoElement.title}}</span>
+          <span class="todoNote" *ngIf="toDoElement.isEdited != true">{{toDoElement.note}}</span>
+          <span class="todoTitle" *ngIf="toDoElement.isEdited == true"><input type="text" autocomplete="off" class="materialize-textarea noMargin" #Title [(ngModel)]="editToDoCommand.title" name="Title"></span>
+          <span class="todoNote" *ngIf="toDoElement.isEdited == true"><input type="text" autocomplete="off" class="materialize-textarea noMargin" #Title [(ngModel)]="editToDoCommand.note" name="Title"></span>
+          <i class="material-icons prefix iconEdit" *ngIf="toDoElement.isEdited != true" (click)="onEdit(toDoElement)" matTooltip="Edit" matTooltipPosition="left" matTooltipClass="tooltip-edit">edit</i>
+          <i class="material-icons prefix iconEdit" *ngIf="toDoElement.isEdited == true" (click)="saveEdit(toDoElement)" matTooltip="Save" matTooltipPosition="left" matTooltipClass="tooltip-edit">save</i>
+          <i class="material-icons prefix iconDelete" (click)="onRemove(toDoElement.id)" matTooltip="Delete" matTooltipPosition="right" matTooltipClass="tooltip-delete">clear</i>
+        </div>
+        </mat-list-item>
+      </div>
+      </mat-list>
   </div>

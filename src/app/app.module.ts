@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatInputModule, MatButtonModule, MatCheckboxModule, MatSelectModule } from '@angular/material';
+import { MatInputModule, MatButtonModule, MatCheckboxModule, MatSelectModule, MatDialogModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 
@@ -21,6 +21,10 @@ import { appRoutes } from './routes';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { ToDoService } from './shared/todo.service';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule, MatList} from '@angular/material/list';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { ConfirmDialogComponent } from './shared/modals/dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,8 @@ import { ToDoService } from './shared/todo.service';
     SignUpComponent,
     UserComponent,
     SignInComponent,
-    HomeComponent
+    HomeComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,13 +42,19 @@ import { ToDoService } from './shared/todo.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatInputModule,
-    MatButtonModule,
+    MatDialogModule,
     MatCheckboxModule,
     MatSelectModule,
     MatFormFieldModule,
     MatCardModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    MatDividerModule,
+    MatListModule,
+    MatTooltipModule
+  ],
+  entryComponents: [
+    ConfirmDialogComponent
   ],
   providers: [UserService, ToDoService, AuthGuard,
     {

@@ -1,12 +1,12 @@
 import { Todo } from './todo.model';
 
 export class User {
-    UserName: string;
-    Password: string;
-    Email: string;
-    FirstName: string;
-    LastName: string;
-    Token: string;
+    userName: string;
+    password: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    token: string;
     toDo: Array<Todo>;
     id: number;
 }

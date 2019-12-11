@@ -22,7 +22,7 @@ export class AuthInterceptor implements HttpInterceptor {
     getToken() {
         let user: User = this.userService.getCurrentUserWithToken();
         if (user) {
-            return 'Bearer ' + user.Token;
+            return 'Bearer ' + user.token;
         }
     }
 

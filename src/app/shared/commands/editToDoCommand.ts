@@ -3,5 +3,5 @@ export class EditToDoCommand {
     title: string;
     userId: number;
     dueDate: Date;
-    id:number;
+    id: number;
 }

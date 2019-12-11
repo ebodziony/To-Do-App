@@ -1,3 +1,85 @@
 .bigicon {
     font-size: 40px;
 }
+
+.noteHeader {
+    font-size: 24px;
+    padding: 20px;
+}
+
+.addNoteHeader {
+    font-size: 24px;
+}
+
+.gridTasks
+{
+    display: grid;
+    grid-template-columns: 40px 1fr 3fr 40px 40px;
+    grid-template-rows: 1fr;
+    width: 100%;
+    padding: 12px 0px;
+    min-height: 70px;
+}
+
+.gridTasks * {
+    display: flex;
+    align-items: center;
+    cursor: default;
+}
+
+mat-list {
+    padding-top: 0px;
+}
+
+mat-list-item {
+    height: unset!important;
+}
+
+mat-checkbox {
+    cursor: pointer!important; 
+}
+
+.todoTitle {
+    min-width: 90px;
+    padding-right: 10px;
+}
+
+.todoNote {
+    color: grey;
+    min-width: 110px;
+    padding-right: 10px;
+}
+
+.iconDelete {
+    /* color: grey; */
+    font-size: 40px;
+    color: #f44336;
+}
+
+.iconDelete:hover {
+    /* color: #f44336; */
+    cursor: pointer;
+}
+
+.iconEdit {
+    /* color: grey; */
+    font-size: 30px;
+    color: #3f51b5;
+}
+
+.iconEdit:hover {
+    /* color: #26a69a; */
+    cursor: pointer;
+}
+
+::ng-deep .tooltip-delete {
+    background: #f44336;
+}
+
+::ng-deep .tooltip-edit {
+    background: #3f51b5;
+}
+
+.noMargin {
+    margin: 0px!important;
+}

@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>{{data.title}}</h2>
+<div mat-dialog-content>
+  <!-- <p>Do you want to confirm?</p> -->
+</div>
+<div mat-dialog-actions>
+    <div class="dialogButtons">
+        <button class="btn btn-submit" mat-button mat-dialog-close>No</button>
+    </div>
+    <div class="dialogButtons">
+        <button class="btn btn-submit redButton" mat-button (click)="submitDialog()" cdkFocusInitial>Yes</button>
+    </div>
+</div>

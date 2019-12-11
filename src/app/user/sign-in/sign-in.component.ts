@@ -22,8 +22,8 @@ export class SignInComponent implements OnInit {
   OnSubmit(userName, password) {
 
     this.command = new AuthorizeUser();
-    this.command.UserName = userName;
-    this.command.Password = password;
+    this.command.userName = userName;
+    this.command.password = password;
 
     this.userService.userAuthentication(this.command).subscribe((data: any) => {
       localStorage.setItem('user', JSON.stringify(data));

@@ -1,4 +1,4 @@
 export class AuthorizeUser {
-    UserName: string;
-    Password: string;
+    userName: string;
+    password: string;
 }
