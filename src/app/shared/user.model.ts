@@ -8,5 +8,5 @@ export class User {
     LastName: string;
     Token: string;
     toDo: Array<Todo>;
-    Id: number;
+    id: number;
 }

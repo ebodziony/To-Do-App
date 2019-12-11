@@ -45,3 +45,15 @@
     </div>
   </div>
 </div>
+<div class="container" *ngIf="user">
+    <div class="row col s12 m7">
+      <div class="card">
+        <div *ngIf="toDoListArray != undefined" class="card-content">
+            <span>My notes</span>
+            <br>
+          <div *ngFor="let toDoElement of toDoListArray">
+            {{toDoElement.title}} - {{toDoElement.note}}
+          </div>
+      </div>
+    </div>
+  </div>

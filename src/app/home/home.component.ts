@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.toDoListArray = this.user.toDo;
+    this.refreshList();
     this.resetForm();
   }
 
@@ -44,10 +44,17 @@ export class HomeComponent implements OnInit {
     let command = new CreateToDoCommand();
     command.note = form.value.Note;
     command.title = form.value.Title;
-    command.userId = this.user.Id;
+    command.userId = this.user.id;
     this.toDoService.create(command).subscribe(data => {
       console.log(data);
       this.resetForm(form);
+      this.refreshList();
+    });
+  }
+
+  refreshList() {
+    this.toDoService.getAllToDoForUser(this.user.id).subscribe(data => {
+      this.toDoListArray = data;
     });
   }
 
