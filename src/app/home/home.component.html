@@ -13,8 +13,9 @@
   <div class="row col s12 m7">
     <div class="card">
       <div class="card-content">
-        <span>Logged in as:</span>
-        <br>
+        <div class="addNoteHeader">
+          <span>Logged in as:</span>
+        </div>
         <span>Username: {{user.userName}}</span>
         <br>
         <span>Email: {{user.email}}</span>
@@ -60,7 +61,7 @@
         <mat-list-item>
           <div class="gridTasks">
             <div>
-              <mat-checkbox color="primary" (click)="onCheck(toDoElement.id)" [(ngModel)]="toDoElement.done"></mat-checkbox>
+              <mat-checkbox color="primary" (click)="onCheck(toDoElement)" [(ngModel)]="toDoElement.done"></mat-checkbox>
             </div>
           <span class="todoTitle" *ngIf="toDoElement.isEdited != true">{{toDoElement.title}}</span>
           <span class="todoNote" *ngIf="toDoElement.isEdited != true">{{toDoElement.note}}</span>

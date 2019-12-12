@@ -1,7 +1,7 @@
 export class Todo {
     note: string;
     title: string;
-    done: boolean;
+    done: any;
     userId: number;
     dueDate: Date;
     isEdited: boolean;

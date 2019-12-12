@@ -39,12 +39,12 @@
       <form class="col s12 white" #userRegistrationForm="ngForm" (ngSubmit)="OnSubmit(userRegistrationForm)">
         <div class="row">
           <div class="input-field col s6">
-            <input class="validate" type="text" name="userName" #userName="ngModel" [(ngModel)]="user.userName" required>
-            <label data-error="Pole wymagane!">UserName *</label>
+            <input class="validate" type="text" name="userName" #userName="ngModel" [(ngModel)]="user.userName" required autocomplete="off">
+            <label data-error="Required field!">UserName *</label>
           </div>
           <div class="input-field col s6">
             <input class="validate" type="password" name="password" #password="ngModel" [(ngModel)]="user.password" required  minlength="6">
-            <label [attr.data-error]="password.errors!=null?(password.errors.required?'Pole wymagane!':'Co najmniej 6 znaków!'):''">Password *</label>
+            <label [attr.data-error]="password.errors!=null?(password.errors.required?'Required field!':'At least 6 characters!'):''">Password *</label>
           </div>
         </div>
         <div class="row">

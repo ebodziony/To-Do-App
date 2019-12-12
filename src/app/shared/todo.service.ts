@@ -38,8 +38,12 @@ export class ToDoService {
     return this.http.delete(environment.apiUrl + 'todo/' + toDoId, httpOptions);
   }
 
-  confirm(command: ConfirmToDoCommand): Observable<Todo> {
-    return this.http.post<Todo>(environment.apiUrl + 'todo/confirm', command, httpOptions);
+  confirm(toDoId: number): Observable<Todo> {
+    return this.http.put<Todo>(environment.apiUrl + `todo/confirm/${toDoId}`, httpOptions);
+  }
+
+  unconfirm(toDoId: number): Observable<Todo> {
+    return this.http.put<Todo>(environment.apiUrl + `todo/unconfirm/${toDoId}`, httpOptions);
   }
 
   getAllToDoForUser(userId: number): Observable<Array<Todo>> {

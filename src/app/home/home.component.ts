@@ -95,10 +95,16 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  onCheck(toDoId: number) {
-    this.toDoService.confirm(new ConfirmToDoCommand(toDoId)).subscribe(data => {
-      this.refreshElement(data);
-    });
+  onCheck(toDoElement: Todo) {
+    if (toDoElement.done === 1) {
+      this.toDoService.unconfirm(toDoElement.id).subscribe(data => {
+        this.refreshElement(data);
+      });
+    } else {
+      this.toDoService.confirm(toDoElement.id).subscribe(data => {
+        this.refreshElement(data);
+      });
+    }
   }
 
   onEdit(toDoElement: Todo) {
